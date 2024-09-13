@@ -1,4 +1,5 @@
 repositories {
+    mavenLocal()
     mavenCentral()
     maven { url = 'https://repo.grails.org/grails/core' }
 }
@@ -9,7 +10,7 @@ dependencies {
     implementation buildsrcLibs.grails.gradle.plugin, {
         // Grails Gradle plugin leaks groovy-xml onto compile classpath
         // which is causes a version conflict for Gradle
-        exclude group: 'org.codehaus.groovy', module: 'groovy-xml'
+        exclude group: 'org.apache.groovy', module: 'groovy-xml'
     }
     implementation buildsrcLibs.webdriver.binaries.gradle.plugin
 
@@ -19,3 +20,5 @@ dependencies {
 tasks.withType(Test).configureEach {
     useJUnitPlatform()
 }
+
+apply from: rootProject.layout.projectDirectory.file('../gradle/buildsrc-groovy-config.gradle')

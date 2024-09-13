@@ -36,8 +36,9 @@ dependencies {
     runtimeOnly libs.tomcat.jdbc
 
     compileOnly libs.micronaut.inject.groovy
-    compileOnly libs.javax.annotation.api
-    compileOnly libs.javax.servlet.api
+    compileOnly libs.micronaut.jackson.databind
+    compileOnly libs.jakarta.annotation.api
+    compileOnly libs.jakarta.servlet.api
     compileOnly libs.slf4j.nop // Prevent warnings about missing SLF4j implementation during GSP compilation
 }
 
