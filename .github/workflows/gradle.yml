@@ -4,6 +4,7 @@ on:
     branches:
       - '[4-9]+.[0-9]+.x'
       - '[3-9]+.[3-9]+.x'
+      - 'bkoehm.6.1.x.gha'
   pull_request:
     branches:
       - '[4-9]+.[0-9]+.x'
@@ -15,7 +16,7 @@ env:
 
 jobs:
   core-tests:
-    if: github.event_name == 'pull_request'
+    if: github.event_name == 'push'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -32,7 +33,7 @@ jobs:
             -Dgeb.env=chromeHeadless
 
   functional-test:
-    if: github.event_name == 'pull_request'
+    if: github.event_name == 'push'
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -68,33 +69,3 @@ jobs:
           arguments: |
             spring-security-core:build 
             -Dgeb.env=chromeHeadless
-
-      - name: Publish Snapshot artifacts to Artifactory (repo.grails.org)
-        uses: gradle/actions/setup-gradle@v3
-        if: success()
-        env:
-          ORG_GRADLE_PROJECT_artifactoryUsername: ${{ secrets.ARTIFACTORY_USERNAME }}
-          ORG_GRADLE_PROJECT_artifactoryPassword: ${{ secrets.ARTIFACTORY_PASSWORD }}
-          GRADLE_ENTERPRISE_ACCESS_KEY: ${{ secrets.GRADLE_ENTERPRISE_ACCESS_KEY }}
-        with:
-          arguments: |
-            -Dorg.gradle.internal.publish.checksums.insecure=true 
-            spring-security-core:publish
-
-      - name: Generate Snapshot Documentation
-        if: success()
-        uses: gradle/actions/setup-gradle@v3
-        env:
-          GRADLE_ENTERPRISE_ACCESS_KEY: ${{ secrets.GRADLE_ENTERPRISE_ACCESS_KEY }}
-        with:
-          arguments: spring-security-core:docs
-
-      - name: Publish Snapshot Documentation to Github Pages
-        if: success()
-        uses: micronaut-projects/github-pages-deploy-action@grails
-        env:
-          BRANCH: gh-pages
-          COMMIT_EMAIL: ${{ env.GIT_USER_EMAIL }}
-          COMMIT_NAME: ${{ env.GIT_USER_NAME }}
-          FOLDER: plugin/build/docs
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
