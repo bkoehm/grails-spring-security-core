@@ -1,5 +1,5 @@
 [versions]
-asset-pipeline = '5.0.0'
+asset-pipeline = '5.0.1'
 commons-lang = '2.6'
 ehcache = '3.10.8'
 geb = '7.0'
@@ -18,7 +18,7 @@ micronaut = '4.5.3'
 selenium = '4.19.1'
 selenium-safari = '4.19.1'
 slf4j = '2.0.16'
-spock = '2.4-M4-groovy-4.0'
+spock = '2.3-groovy-4.0'
 spring = '6.1.12'
 springboot = '3.3.3'
 spring-security = '6.3.3'
@@ -84,9 +84,9 @@ spring-web = { module = 'org.springframework:spring-web', version.ref = 'spring'
 springboot-autoconfigure = { module = 'org.springframework.boot:spring-boot-autoconfigure', version.ref = 'springboot' }
 springboot-core = { module = 'org.springframework.boot:spring-boot', version.ref = 'springboot' }
 springboot-starter-logging = { module = 'org.springframework.boot:spring-boot-starter-logging', version.ref = 'springboot' }
+springboot-starter-test = { module = 'org.springframework.boot:spring-boot-starter-test', version.ref = 'springboot' }
 springboot-starter-tomcat = { module = 'org.springframework.boot:spring-boot-starter-tomcat', version.ref = 'springboot' }
 tomcat-jdbc = { module = 'org.apache.tomcat:tomcat-jdbc', version.ref = 'tomcat' }
-springboot-starter-test = { module = 'org.springframework.boot:spring-boot-starter-test', version.ref = 'springboot' }
 
 [bundles]
 geb = ['geb-core', 'geb-spock']
