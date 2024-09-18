@@ -44,9 +44,9 @@ import org.springframework.util.ReflectionUtils
 import org.springframework.util.StringUtils
 import org.springframework.web.context.ServletContextAware
 
-import javax.servlet.ServletContext
-import javax.servlet.http.HttpServletRequest
-import javax.servlet.http.HttpServletResponse
+import jakarta.servlet.ServletContext
+import jakarta.servlet.http.HttpServletRequest
+import jakarta.servlet.http.HttpServletResponse
 import java.lang.annotation.Annotation
 import java.lang.reflect.AccessibleObject
 import java.lang.reflect.Constructor
@@ -93,7 +93,7 @@ class AnnotationFilterInvocationDefinition extends AbstractFilterInvocationDefin
 			existingRequest = WebUtils.retrieveGrailsWebRequest()
 		}
 		catch (IllegalStateException e) {
-			if (request.getAttribute('javax.servlet.error.status_code') == 404) {
+			if (request.getAttribute('jakarta.servlet.error.status_code') == 404) {
 				ERROR404
 			}
 			else {
