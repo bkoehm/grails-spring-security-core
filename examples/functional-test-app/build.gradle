@@ -35,7 +35,6 @@ dependencies {
     runtimeOnly libs.h2database
     runtimeOnly libs.tomcat.jdbc
 
-    compileOnly libs.micronaut.inject.groovy
     compileOnly libs.micronaut.jackson.databind
     compileOnly libs.jakarta.annotation.api
     compileOnly libs.jakarta.servlet.api
@@ -47,3 +46,10 @@ apply from: rootProject.layout.projectDirectory.file('gradle/groovy-config.gradl
 apply from: rootProject.layout.projectDirectory.file('gradle/test-config.gradle')
 apply from: rootProject.layout.projectDirectory.file('gradle/integrationTest.gradle')
 apply from: rootProject.layout.projectDirectory.file('gradle/examples-config.gradle')
+
+configurations {
+    all {
+        exclude group: 'io.micronaut', module:'micronaut-inject-groovy'
+
+    }
+}
