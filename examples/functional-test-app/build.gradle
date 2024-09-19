@@ -23,6 +23,7 @@ dependencies {
     implementation libs.spring.security.core
     implementation libs.spring.web
 
+    runtimeOnly libs.micronaut.jackson.databind
     runtimeOnly libs.gorm.hibernate5
     runtimeOnly libs.grails.asset.pipeline
     runtimeOnly libs.grails.i18n
@@ -35,7 +36,6 @@ dependencies {
     runtimeOnly libs.h2database
     runtimeOnly libs.tomcat.jdbc
 
-    compileOnly libs.micronaut.jackson.databind
     compileOnly libs.jakarta.annotation.api
     compileOnly libs.jakarta.servlet.api
     compileOnly libs.slf4j.nop // Prevent warnings about missing SLF4j implementation during GSP compilation
